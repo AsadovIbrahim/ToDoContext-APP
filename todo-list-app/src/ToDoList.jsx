@@ -1,5 +1,7 @@
 import React, { useContext, useState } from "react";
 import { ToDoContext } from "./ToDoContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan, faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 
 const ToDoList = () => {
   const { todos, deleteTodo, updateTodo } = useContext(ToDoContext);
@@ -27,19 +29,25 @@ const ToDoList = () => {
       <ul>
         {todos.map((todo, index) => (
           <li key={index}>
-            {todo}
-            <button onClick={() => handleDelete(index)}>Delete</button>
-            <button onClick={() => handleUpdate(index)}>Update</button>
-            {index === updatingIndex && (
-              <div>
-                <input
-                  type="text"
-                  value={updatedTodo}
-                  onChange={(e) => setUpdatedTodo(e.target.value)}
-                />
-                <button onClick={() => handleUpdateConfirm(index)}>Confirm</button>
-              </div>
-            )}
+            <p
+              contentEditable={index === updatingIndex}
+              onBlur={(e) => {
+                setUpdatedTodo(e.target.textContent);
+                handleUpdateConfirm(index);
+              }}
+            >
+              {todo}
+            </p>
+            <FontAwesomeIcon
+              className="delete"
+              icon={faTrashCan}
+              onClick={() => handleDelete(index)}
+            />
+            <FontAwesomeIcon
+              className="update"
+              onClick={() => handleUpdate(index)}
+              icon={faPenToSquare}
+            />
           </li>
         ))}
       </ul>

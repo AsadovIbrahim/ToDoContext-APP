@@ -4,12 +4,13 @@ import ToDoList from './ToDoList';
 import ToDoActions from './ToDoActions';
 import { ToDoProvider } from './ToDoContext';
 
+
 function App() {
   return (
     <div className="App">
       <h1>ToDo List App</h1>
       <ToDoProvider>
-        <ToDoActions />
+        <ToDoActions/>
         <ToDoList />
       </ToDoProvider>
     </div>

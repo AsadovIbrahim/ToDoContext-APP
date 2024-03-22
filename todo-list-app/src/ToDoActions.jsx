@@ -15,8 +15,10 @@ const ToDoActions = () => {
     <div>
       <h2>Add ToDo</h2>
       <form onSubmit={handleSubmit}>
-        <input type="text" value={todo} onChange={(e) => setTodo(e.target.value)} />
-        <button type="submit">Add</button>
+        <input placeholder='Enter' type="text" value={todo} onChange={(e) => setTodo(e.target.value)} />
+        <button class="button">
+          Add
+        </button>      
       </form>
     </div>
   );
